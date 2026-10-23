@@ -17,15 +17,15 @@
     /* VARIABLES & THEME */
     :root {
       --bg-dark: #070708;
-      --bg-card: #0d0d0f;
-      --bg-card-hover: #141418;
+      --bg-card: rgba(13, 13, 15, 0.85);
+      --bg-card-hover: rgba(20, 20, 24, 0.95);
       --accent-amber: #e5a93c;
       --accent-glow: rgba(229, 169, 60, 0.25);
       --accent-red: #ff3b30;
       --text-main: #f3f3f5;
       --text-muted: #a0a0ab;
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-amber: rgba(229, 169, 60, 0.3);
+      --border-subtle: rgba(255, 255, 255, 0.12);
+      --border-amber: rgba(229, 169, 60, 0.4);
       --radius-pill: 999px;
       --radius-card: 20px;
     }
@@ -45,12 +45,12 @@
       min-height: 100vh;
       padding: 20px 12px 60px 12px;
 
-      /* IMAGEM DE FUNDO DARK CINEMATOGRÁFICA */
+      /* IMAGEM DE FUNDO CINEMATOGRÁFICA AJUSTADA */
       background-image: 
-        linear-gradient(to bottom, rgba(7, 7, 8, 0.85), rgba(7, 7, 8, 0.98)),
+        linear-gradient(to bottom, rgba(7, 7, 8, 0.65) 0%, rgba(7, 7, 8, 0.88) 100%),
         url('fundo-site.jpg');
       background-size: cover;
-      background-position: center;
+      background-position: center top;
       background-attachment: fixed;
       background-repeat: no-repeat;
     }
@@ -106,6 +106,7 @@
       text-transform: uppercase;
       color: #ffffff;
       margin-bottom: 4px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     }
 
     .profile-subtitle {
@@ -115,19 +116,23 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       margin-bottom: 12px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
     }
 
     .profile-bio {
       font-size: 0.88rem;
-      color: var(--text-muted);
+      color: #d1d1d6;
       line-height: 1.5;
       max-width: 420px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
     }
 
     /* BANNERS & CARDS */
     .banner-card {
       position: relative;
       background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-card);
       padding: 20px;
@@ -145,21 +150,21 @@
     .banner-card:hover {
       transform: translateY(-2px);
       border-color: var(--border-amber);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 16px var(--accent-glow);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px var(--accent-glow);
     }
 
     .banner-card.highlight-whatsapp {
-      background: linear-gradient(135deg, #0b2818 0%, #0d0d0f 100%);
-      border-color: rgba(37, 211, 102, 0.4);
+      background: linear-gradient(135deg, rgba(11, 40, 24, 0.88) 0%, rgba(13, 13, 15, 0.88) 100%);
+      border-color: rgba(37, 211, 102, 0.5);
     }
 
     .banner-card.highlight-whatsapp:hover {
       border-color: #25d366;
-      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.2);
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.25);
     }
 
     .banner-card.highlight-amber {
-      background: linear-gradient(135deg, rgba(229, 169, 60, 0.15) 0%, var(--bg-card) 100%);
+      background: linear-gradient(135deg, rgba(229, 169, 60, 0.2) 0%, var(--bg-card) 100%);
       border-color: var(--border-amber);
     }
 
@@ -174,7 +179,7 @@
       width: 48px;
       height: 48px;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
@@ -185,8 +190,8 @@
 
     .highlight-whatsapp .card-icon-box {
       color: #25d366;
-      border-color: rgba(37, 211, 102, 0.3);
-      background: rgba(37, 211, 102, 0.1);
+      border-color: rgba(37, 211, 102, 0.4);
+      background: rgba(37, 211, 102, 0.15);
     }
 
     .card-text {
@@ -235,6 +240,7 @@
       letter-spacing: 0.15em;
       color: var(--text-muted);
       margin: 12px 0 4px 4px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
     }
 
     /* PORTFOLIO GRID */
@@ -247,6 +253,7 @@
     .portfolio-card {
       position: relative;
       background: var(--bg-card);
+      backdrop-filter: blur(8px);
       border: 1px solid var(--border-subtle);
       border-radius: 16px;
       overflow: hidden;
@@ -270,12 +277,12 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.55;
+      opacity: 0.65;
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .portfolio-card:hover .portfolio-bg {
-      opacity: 0.75;
+      opacity: 0.85;
       transform: scale(1.05);
     }
 
@@ -339,6 +346,8 @@
 
     .social-btn {
       background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--border-subtle);
       border-radius: 16px;
       padding: 14px 8px;
@@ -370,6 +379,7 @@
       color: var(--text-muted);
       margin-top: 24px;
       line-height: 1.6;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
     }
 
     /* MODAL */
