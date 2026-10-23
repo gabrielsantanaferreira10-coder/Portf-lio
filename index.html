@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabriel Santana | Filmmaker & Audiovisual</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* VARIABLES & THEME */
+    :root {
+      --bg-dark: #070708;
+      --bg-card: #0d0d0f;
+      --bg-card-hover: #141418;
+      --accent-amber: #e5a93c;
+      --accent-glow: rgba(229, 169, 60, 0.25);
+      --accent-red: #ff3b30;
+      --text-main: #f3f3f5;
+      --text-muted: #a0a0ab;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-amber: rgba(229, 169, 60, 0.3);
+      --radius-pill: 999px;
+      --radius-card: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px 12px 60px 12px;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(229, 169, 60, 0.08) 0%, transparent 60%),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 24px 24px, 24px 24px;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* HEADER / AVATAR PROFILE */
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 24px 16px 12px 16px;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      margin-bottom: 16px;
+    }
+
+    .avatar-glow {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-amber), var(--accent-red));
+      filter: blur(8px);
+      opacity: 0.7;
+    }
+
+    .avatar-img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent-amber);
+      background-color: #1a1a1f;
+    }
+
+    .profile-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .profile-subtitle {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-amber);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .profile-bio {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 420px;
+    }
+
+    /* BANNERS & CARDS */
+    .banner-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-decoration: none;
+      color: var(--text-main);
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .banner-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-amber);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 16px var(--accent-glow);
+    }
+
+    .banner-card.highlight-whatsapp {
+      background: linear-gradient(135deg, #0b2818 0%, #0d0d0f 100%);
+      border-color: rgba(37, 211, 102, 0.4);
+    }
+
+    .banner-card.highlight-whatsapp:hover {
+      border-color: #25d366;
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.2);
+    }
+
+    .banner-card.highlight-amber {
+      background: linear-gradient(135deg, rgba(229, 169, 60, 0.15) 0%, var(--bg-card) 100%);
+      border-color: var(--border-amber);
+    }
+
+    .card-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      z-index: 2;
+    }
+
+    .card-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-amber);
+      flex-shrink: 0;
+    }
+
+    .highlight-whatsapp .card-icon-box {
+      color: #25d366;
+      border-color: rgba(37, 211, 102, 0.3);
+      background: rgba(37, 211, 102, 0.1);
+    }
+
+    .card-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-tag {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-amber);
+      margin-bottom: 2px;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.25;
+    }
+
+    .card-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .card-arrow {
+      color: var(--text-muted);
+      z-index: 2;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .banner-card:hover .card-arrow {
+      transform: translateX(4px);
+      color: #ffffff;
+    }
+
+    /* SECTION TITLE */
+    .section-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin: 12px 0 4px 4px;
+    }
+
+    /* PORTFOLIO GRID */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .portfolio-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/5;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 12px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-amber);
+    }
+
+    .portfolio-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .portfolio-card:hover .portfolio-bg {
+      opacity: 0.75;
+      transform: scale(1.05);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(7, 7, 8, 0.95) 10%, rgba(7, 7, 8, 0.2) 60%, transparent 100%);
+    }
+
+    .portfolio-info {
+      position: relative;
+      z-index: 2;
+    }
+
+    .portfolio-brand {
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-amber);
+    }
+
+    .portfolio-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    .play-btn-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(229, 169, 60, 0.9);
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.25s ease;
+      z-index: 2;
+    }
+
+    .portfolio-card:hover .play-btn-circle {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* SOCIAL FOOTER ICONS */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .social-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 14px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.72rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .social-btn:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-amber);
+      transform: translateY(-2px);
+    }
+
+    .social-btn i {
+      color: var(--accent-amber);
+    }
+
+    /* FOOTER TEXT */
+    .footer-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 24px;
+      line-height: 1.6;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 460px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-amber);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .modal-header {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .modal-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .video-placeholder {
+      width: 100%;
+      aspect-ratio: 9/16;
+      max-height: 380px;
+      background: #000;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border: 1px dashed var(--border-subtle);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- PROFILE HEADER -->
+    <header class="profile-header">
+      <div class="avatar-wrapper">
+        <div class="avatar-glow"></div>
+        <img class="avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" alt="Gabriel Santana">
+      </div>
+      <h1 class="profile-title">Gabriel Santana</h1>
+      <div class="profile-subtitle">Filmmaker & ADS</div>
+      <p class="profile-bio">
+        Transformo a visão de marcas e empresas em produções cinematográficas de alto impacto em Brasília/DF. Unindo estética visual e estratégia comercial.
+      </p>
+    </header>
+
+    <!-- MAIN CTA: WHATSAPP -->
+    <a href="https://wa.me/5561999999999?text=Ol%C3%A1%20Gabriel!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" class="banner-card highlight-whatsapp">
+      <div class="card-left">
+        <div class="card-icon-box">
+          <i data-lucide="message-square"></i>
+        </div>
+        <div class="card-text">
+          <span class="card-tag">Atendimento Rápido</span>
+          <span class="card-title">Chame no WhatsApp</span>
+          <span class="card-subtitle">Solicite um orçamento para o seu projeto</span>
+        </div>
+      </div>
+      <i data-lucide="chevron-right" class="card-arrow"></i>
+    </a>
+
+    <!-- BANNER: PROPOSTA DE PARCERIA -->
+    <a href="https://wa.me/5561999999999?text=Ol%C3%A1%20Gabriel!%20Quero%20propor%20uma%20parceria." target="_blank" class="banner-card highlight-amber">
+      <div class="card-left">
+        <div class="card-icon-box">
+          <i data-lucide="sparkles"></i>
+        </div>
+        <div class="card-text">
+          <span class="card-tag">Comercial & Lojas</span>
+          <span class="card-title">Proposta de Parceria</span>
+          <span class="card-subtitle">Produção audiovisual para marcas e varejo</span>
+        </div>
+      </div>
+      <i data-lucide="chevron-right" class="card-arrow"></i>
+    </a>
+
+    <!-- PORTFOLIO SECTION -->
+    <div class="section-title">Trabalhos em Destaque</div>
+
+    <div class="portfolio-grid">
+      
+      <!-- CARD 1: ADIDAS -->
+      <div class="portfolio-card" onclick="openModal('Adidas Taguatinga', 'Vídeo comercial em 4K focado na experiência de loja e estilo esportivo.')">
+        <img class="portfolio-bg" src="https://images.unsplash.com/photo-1556906781-9a412961c28c?auto=format&fit=crop&q=80&w=400" alt="Adidas">
+        <div class="portfolio-overlay"></div>
+        <div class="play-btn-circle"><i data-lucide="play"></i></div>
+        <div class="portfolio-info">
+          <span class="portfolio-brand">Adidas</span>
+          <h3 class="portfolio-name">Taguatinga Shopping</h3>
+        </div>
+      </div>
+
+      <!-- CARD 2: NBA STORE -->
+      <div class="portfolio-card" onclick="openModal('NBA Store', 'Filme dinâmico destacando o conceito de basquete e cultura street.')">
+        <img class="portfolio-bg" src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80&w=400" alt="NBA Store">
+        <div class="portfolio-overlay"></div>
+        <div class="play-btn-circle"><i data-lucide="play"></i></div>
+        <div class="portfolio-info">
+          <span class="portfolio-brand">NBA Store</span>
+          <h3 class="portfolio-name">Comercial Varejo</h3>
+        </div>
+      </div>
+
+      <!-- CARD 3: PITICAS -->
+      <div class="portfolio-card" onclick="openModal('Piticas', 'Captação de produtos geek com transições e edição com IA.')">
+        <img class="portfolio-bg" src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=400" alt="Piticas">
+        <div class="portfolio-overlay"></div>
+        <div class="play-btn-circle"><i data-lucide="play"></i></div>
+        <div class="portfolio-info">
+          <span class="portfolio-brand">Piticas</span>
+          <h3 class="portfolio-name">Coleção Especial</h3>
+        </div>
+      </div>
+
+      <!-- CARD 4: OFICINA & ARTESANATO -->
+      <div class="portfolio-card" onclick="openModal('Oficina de Carpintaria', 'Documentário institucional valorizando a arte da madeira.')">
+        <img class="portfolio-bg" src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=400" alt="Oficina">
+        <div class="portfolio-overlay"></div>
+        <div class="play-btn-circle"><i data-lucide="play"></i></div>
+        <div class="portfolio-info">
+          <span class="portfolio-brand">Artesanato</span>
+          <h3 class="portfolio-name">Oficina do Tio</h3>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SOCIAL MEDIA FOOTER -->
+    <div class="section-title">Redes Sociais</div>
+
+    <div class="social-grid">
+      <a href="https://instagram.com/gsantana.film" target="_blank" class="social-btn">
+        <i data-lucide="instagram"></i>
+        <span>Instagram</span>
+      </a>
+      <a href="https://youtube.com" target="_blank" class="social-btn">
+        <i data-lucide="youtube"></i>
+        <span>YouTube</span>
+      </a>
+      <a href="https://tiktok.com" target="_blank" class="social-btn">
+        <i data-lucide="video"></i>
+        <span>TikTok</span>
+      </a>
+    </div>
+
+    <!-- FOOTER TEXT -->
+    <footer class="footer-note">
+      <p>© 2026 Gabriel Santana • Todos os direitos reservados</p>
+      <p style="font-size: 0.68rem; margin-top: 4px; opacity: 0.6;">Desenvolvido com tecnologia e olhar cinematográfico (ADS + Audiovisual)</p>
+    </footer>
+
+  </div>
+
+  <!-- MODAL DE VÍDEO -->
+  <div class="modal-overlay" id="videoModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle">Título do Projeto</span>
+        <button class="modal-close" onclick="closeModal()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="video-placeholder">
+          <p id="modalDesc">Espaço do Player de Vídeo (Reels / Shorts / Vimeo)</p>
+        </div>
+        <a href="https://wa.me/5561999999999" target="_blank" class="banner-card highlight-whatsapp" style="padding: 12px; margin-top: 8px;">
+          <div class="card-left">
+            <i data-lucide="message-square" style="color: #25d366;"></i>
+            <span style="font-size: 0.85rem; font-weight: 700;">Quero um vídeo similar para minha loja</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Modal Functions
+    function openModal(title, desc) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDesc').innerText = desc;
+      document.getElementById('videoModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('videoModal').classList.remove('active');
+    }
+  </script>
+</body>
+</html>
